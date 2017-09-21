@@ -137,7 +137,23 @@
       <option value ="5">5 (Strongly Agree)<option>
     </select>
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" style="margin:20px 0;">Submit</button>
+    <button data-target="#friend" data-toggle="modal" type="submit" class="btn btn-primary btn-lg btn-block" id="submit" style="margin:20px 0;">Submit</button>
+  </div>
+
+  <div class = "modal" id= "friend" tabindex="-1">
+    <div class = "modal-dialog">
+      <div class = "modal-content">
+        <div class = "modal-header">
+          <button class ="close" data-dismiss="modal">&times;</button>
+          <h4 class = "modal-title" id = "modal-title">Friend Found</h4>
+          <hr>
+          <div class = "modal-body">
+            <h4 id="friend-name"></h4>
+            <div id="friend-photo"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script type="text/javascript">
@@ -188,13 +204,10 @@
                   leastDifferencePosition = i;
                 }
               }
-              var match = $("<div>");
-              match.html("<h1>Matched With: " + oldf[leastDifferencePosition].name + "</h1>");
-              match.append("<img style = 'display:block; border: 2px solid black' src = '" + oldf[leastDifferencePosition].photo + "'/>" );
-              match.append("<a href ='/survey'>Go Back</a>")
-              $("#main").html(match);
+              $("#friend-name").html("You matched with <strong>" + oldf[leastDifferencePosition].name) + "</strong>";
+              $("#friend-photo").html("<img src='" + oldf[leastDifferencePosition].photo + "'/>");
             } else {
-              $("#main").html("You are the only one so far.")
+              $("#friend-name").html("You are the only one so far.")
             }
           })
         });
